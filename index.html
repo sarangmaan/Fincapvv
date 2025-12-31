@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fin Cap - AI Market Analysis</title>
+    <link rel="icon" href="data:,">
+    
+    <!-- Suppress Tailwind Warning -->
+    <script>
+      (function() {
+        var oldWarn = console.warn;
+        console.warn = function(...args) {
+          if (args.length > 0 && typeof args[0] === 'string' && args[0].indexOf('cdn.tailwindcss.com') !== -1) {
+            return;
+          }
+          oldWarn.apply(console, args);
+        };
+      })();
+    </script>
+    
+    <!-- UI Styling -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #020617; /* Slate 950 base */
+        color: #e2e8f0;
+      }
+      
+      .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar { width: 6px; height: 6px; }
+      ::-webkit-scrollbar-track { background: #020617; }
+      ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+      /* Animated Background Grid */
+      .perspective-grid {
+        position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        background-image: 
+          linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        transform: perspective(500px) rotateX(20deg);
+        transform-origin: top center;
+        animation: grid-move 20s linear infinite;
+        opacity: 0.6;
+      }
+
+      @keyframes grid-move {
+        0% { transform: perspective(500px) rotateX(20deg) translateY(0); }
+        100% { transform: perspective(500px) rotateX(20deg) translateY(60px); }
+      }
+
+      /* Floating Animation */
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      /* Slow Spin */
+      @keyframes slow-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .animate-slow-spin {
+        animation: slow-spin 20s linear infinite;
+      }
+
+      /* Grain */
+      .bg-grain {
+        position: fixed; inset: 0; z-index: 1; opacity: 0.04; pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
+
+      /* Glass Card with Hover Glow */
+      .glass-card {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      
+      .glass-card:hover {
+        transform: translateY(-5px) scale(1.005);
+        border-color: rgba(56, 189, 248, 0.3); /* Sky-400 opacity */
+        box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.15); /* Sky glow */
+      }
+
+      .recharts-responsive-container { min-width: 0; }
+      
+      @media print {
+        .no-print { display: none !important; }
+        body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "recharts": "https://esm.sh/recharts@^3.6.0",
+    "vite": "https://esm.sh/vite@^7.3.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "groq-sdk": "https://esm.sh/groq-sdk@^0.37.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
