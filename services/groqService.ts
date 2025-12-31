@@ -115,6 +115,7 @@ const runForensicAnalysis = async (systemType: 'market' | 'portfolio' | 'bubble'
       2. **MANDATORY DATA**: 
          - **Key Metrics**: Must provide specific numbers for Price, Market Cap, P/E, and 52W High. Do NOT use "N/A".
          - **Price History**: Include a placeholder array, but I will overwrite it.
+         - **SWOT Analysis**: You MUST provide 4-5 distinct, detailed points for EACH category (Strengths, Weaknesses, Opportunities, Threats).
       3. **JSON FIRST**: Output the JSON block *immediately*.
       4. **CURRENCY**: Use Indian Rupees (₹) for Indian assets (BSE/NSE). Use USD ($) for US/Global assets.
       5. **WHISTLEBLOWER PERSONA**: When filling the 'whistleblower' and 'insider' sections, act as a deep insider. Reveal "open secrets", accounting irregularities, shadow debt, and dark pool activity. You must provide LONG, DETAILED, and SHOCKING revelations.
@@ -142,7 +143,10 @@ const runForensicAnalysis = async (systemType: 'market' | 'portfolio' | 'bubble'
         },
         "warningSignals": ["Signal 1", "Signal 2"],
         "swot": {
-          "strengths": ["..."], "weaknesses": ["..."], "opportunities": ["..."], "threats": ["..."]
+          "strengths": ["Strength 1", "Strength 2", "Strength 3", "Strength 4", "Strength 5"], 
+          "weaknesses": ["Weakness 1", "Weakness 2", "Weakness 3", "Weakness 4", "Weakness 5"], 
+          "opportunities": ["Opp 1", "Opp 2", "Opp 3", "Opp 4", "Opp 5"], 
+          "threats": ["Threat 1", "Threat 2", "Threat 3", "Threat 4", "Threat 5"]
         },
         "whistleblower": {
            "integrityScore": 85,
