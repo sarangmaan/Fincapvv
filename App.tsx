@@ -217,23 +217,23 @@ const App: React.FC = () => {
       <div className="bg-grain fixed inset-0 z-30 pointer-events-none"></div>
 
       {/* MAIN CONTENT (z-40) */}
-      <div className="relative z-40 flex flex-col min-h-screen pt-6 pb-6 px-6 md:px-8">
+      <div className="relative z-40 flex flex-col min-h-screen pt-6 pb-6 px-4 md:px-8">
         {/* Navigation */}
-        <nav className="sticky top-4 z-50 bg-[#0f172a]/80 backdrop-blur-xl rounded-2xl border border-white/10 mb-10 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-white/20">
-          <div className="px-6 h-16 flex items-center justify-between">
-            <div className="flex items-center gap-3 cursor-pointer group" onClick={() => { setView(ViewState.DASHBOARD); handleNavClick('Markets'); }}>
+        <nav className="sticky top-4 z-50 bg-[#0f172a]/80 backdrop-blur-xl rounded-2xl border border-white/10 mb-8 md:mb-10 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-white/20">
+          <div className="px-4 md:px-6 h-14 md:h-16 flex items-center justify-between">
+            <div className="flex items-center gap-2 md:gap-3 cursor-pointer group" onClick={() => { setView(ViewState.DASHBOARD); handleNavClick('Markets'); }}>
               <div className="relative flex items-center justify-center">
                  <div className="absolute inset-0 bg-sky-500/20 blur-md rounded-full group-hover:bg-sky-500/40 transition-all duration-500"></div>
-                 <Logo className="w-9 h-9 relative z-10 drop-shadow-[0_0_10px_rgba(14,165,233,0.5)]" />
+                 <Logo className="w-8 h-8 md:w-9 md:h-9 relative z-10 drop-shadow-[0_0_10px_rgba(14,165,233,0.5)]" />
               </div>
-              <span className="font-extrabold text-2xl tracking-tighter text-white group-hover:text-sky-400 transition-colors">Fin<span className="text-sky-500">Cap</span></span>
+              <span className="font-extrabold text-xl md:text-2xl tracking-tighter text-white group-hover:text-sky-400 transition-colors">Fin<span className="text-sky-500">Cap</span></span>
             </div>
             
-            <div className="flex items-center gap-1 md:gap-2 text-sm font-bold text-slate-400">
-              <button onClick={() => handleNavClick('Markets')} className={`px-5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer border border-transparent ${view === ViewState.DASHBOARD || view === ViewState.REPORT || view === ViewState.ANALYZING ? 'text-white bg-slate-800/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] border-white/5' : 'hover:text-white hover:bg-white/5'}`}>Markets</button>
-              <button onClick={() => handleNavClick('Portfolio')} className={`px-5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer border border-transparent ${view === ViewState.PORTFOLIO ? 'text-white bg-slate-800/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] border-white/5' : 'hover:text-white hover:bg-white/5'}`}>Portfolio</button>
-              <button onClick={() => handleNavClick('Bubble Scope')} className={`px-5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer flex items-center gap-2 border border-transparent ${view === ViewState.BUBBLE_SCOPE ? 'bg-rose-950/30 text-rose-400 border-rose-500/30 shadow-[0_0_20px_rgba(244,63,94,0.2)]' : 'hover:text-rose-400 hover:bg-rose-950/10'}`}>
-                 <Activity className="w-4 h-4" /> Bubble Scope
+            <div className="flex items-center gap-1 md:gap-2 text-[10px] md:text-sm font-bold text-slate-400">
+              <button onClick={() => handleNavClick('Markets')} className={`px-3 py-2 md:px-5 md:py-2.5 rounded-xl transition-all duration-300 cursor-pointer border border-transparent ${view === ViewState.DASHBOARD || view === ViewState.REPORT || view === ViewState.ANALYZING ? 'text-white bg-slate-800/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] border-white/5' : 'hover:text-white hover:bg-white/5'}`}>Markets</button>
+              <button onClick={() => handleNavClick('Portfolio')} className={`px-3 py-2 md:px-5 md:py-2.5 rounded-xl transition-all duration-300 cursor-pointer border border-transparent ${view === ViewState.PORTFOLIO ? 'text-white bg-slate-800/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] border-white/5' : 'hover:text-white hover:bg-white/5'}`}>Portfolio</button>
+              <button onClick={() => handleNavClick('Bubble Scope')} className={`px-3 py-2 md:px-5 md:py-2.5 rounded-xl transition-all duration-300 cursor-pointer flex items-center gap-1 md:gap-2 border border-transparent ${view === ViewState.BUBBLE_SCOPE ? 'bg-rose-950/30 text-rose-400 border-rose-500/30 shadow-[0_0_20px_rgba(244,63,94,0.2)]' : 'hover:text-rose-400 hover:bg-rose-950/10'}`}>
+                 <Activity className="w-3 h-3 md:w-4 md:h-4" /> <span className="hidden sm:inline">Bubble Scope</span><span className="sm:hidden">Risk</span>
               </button>
             </div>
           </div>
@@ -244,16 +244,16 @@ const App: React.FC = () => {
           {/* Search Bar Container */}
           <div className={`mb-12 transition-all duration-700 ease-out ${view === ViewState.DASHBOARD ? 'translate-y-0 opacity-100' : ''} overflow-visible`}>
              <div className={`max-w-4xl mx-auto text-center ${view !== ViewState.DASHBOARD ? 'hidden' : 'block'}`}>
-                <div className="inline-block animate-float mb-6">
+                <div className="inline-block animate-float mb-4 md:mb-6">
                     <div className="relative">
                         <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-indigo-600 rounded-lg blur opacity-30"></div>
-                        <div className="relative px-4 py-1 bg-slate-900 rounded-lg border border-slate-700 text-xs font-mono text-cyan-400 uppercase tracking-widest">
+                        <div className="relative px-3 py-1 bg-slate-900 rounded-lg border border-slate-700 text-[10px] md:text-xs font-mono text-cyan-400 uppercase tracking-widest">
                             AI-Powered Forensic Analysis v3.3
                         </div>
                     </div>
                 </div>
                 
-                <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-8 drop-shadow-2xl">
+                <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tighter mb-6 md:mb-8 drop-shadow-2xl">
                   Predict the Crash. <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-500 animate-pulse">Find the Opportunity.</span>
                 </h1>
@@ -269,11 +269,11 @@ const App: React.FC = () => {
                    />
                </div>
 
-               <div className="flex flex-wrap justify-center gap-3 mt-10 text-xs font-bold text-slate-500 pointer-events-auto">
+               <div className="flex flex-wrap justify-center gap-2 md:gap-3 mt-8 md:mt-10 text-[10px] md:text-xs font-bold text-slate-500 pointer-events-auto">
                   
                   {/* Trending Assets */}
                   <span 
-                    className="px-5 py-2.5 bg-slate-900/60 backdrop-blur-md rounded-full border border-slate-700/50 cursor-pointer hover:border-sky-500/50 hover:text-sky-400 transition-all hover:bg-slate-800 hover:shadow-[0_0_15px_rgba(14,165,233,0.3)] hover:-translate-y-0.5 active:scale-95" 
+                    className="px-4 py-2 md:px-5 md:py-2.5 bg-slate-900/60 backdrop-blur-md rounded-full border border-slate-700/50 cursor-pointer hover:border-sky-500/50 hover:text-sky-400 transition-all hover:bg-slate-800 hover:shadow-[0_0_15px_rgba(14,165,233,0.3)] hover:-translate-y-0.5 active:scale-95" 
                     onClick={() => { 
                         setQuery('Top Trending Assets'); 
                         performAnalysis('Analyze current market trends. Identify 4-5 top assets with LOW bubble risk and HIGH growth potential. Return them in the trendingAssets list.', 'Top Trending Assets', true); 
@@ -284,7 +284,7 @@ const App: React.FC = () => {
 
                   {/* AI Bubble Risk */}
                   <span 
-                    className="px-5 py-2.5 bg-slate-900/60 backdrop-blur-md rounded-full border border-slate-700/50 cursor-pointer hover:border-rose-500/50 hover:text-rose-400 transition-all hover:bg-slate-800 hover:shadow-[0_0_15px_rgba(244,63,94,0.3)] hover:-translate-y-0.5 active:scale-95" 
+                    className="px-4 py-2 md:px-5 md:py-2.5 bg-slate-900/60 backdrop-blur-md rounded-full border border-slate-700/50 cursor-pointer hover:border-rose-500/50 hover:text-rose-400 transition-all hover:bg-slate-800 hover:shadow-[0_0_15px_rgba(244,63,94,0.3)] hover:-translate-y-0.5 active:scale-95" 
                     onClick={() => { 
                         setQuery('AI Sector Risk Analysis'); 
                         performAnalysis('Analyze AI Sector Bubble Risk. Identify 4-5 AI assets with HIGH bubble risk. Return them in the topBubbleAssets list.', 'AI Sector Risk Analysis', true); 
@@ -295,7 +295,7 @@ const App: React.FC = () => {
 
                   {/* Macro Housing */}
                   <span 
-                    className="px-5 py-2.5 bg-slate-900/60 backdrop-blur-md rounded-full border border-slate-700/50 cursor-pointer hover:border-emerald-500/50 hover:text-emerald-400 transition-all hover:bg-slate-800 hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 active:scale-95" 
+                    className="px-4 py-2 md:px-5 md:py-2.5 bg-slate-900/60 backdrop-blur-md rounded-full border border-slate-700/50 cursor-pointer hover:border-emerald-500/50 hover:text-emerald-400 transition-all hover:bg-slate-800 hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 active:scale-95" 
                     onClick={() => { 
                         setQuery('Housing Market Opportunities'); 
                         performAnalysis('Analyze Housing Market. Identify 4-5 regions or stocks with HIGH growth potential. Return them in the trendingAssets list.', 'Housing Market Opportunities', true); 
@@ -306,7 +306,7 @@ const App: React.FC = () => {
 
                   {/* Crypto Outlook */}
                   <span 
-                    className="px-5 py-2.5 bg-slate-900/60 backdrop-blur-md rounded-full border border-slate-700/50 cursor-pointer hover:border-purple-500/50 hover:text-purple-400 transition-all hover:bg-slate-800 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:-translate-y-0.5 active:scale-95" 
+                    className="px-4 py-2 md:px-5 md:py-2.5 bg-slate-900/60 backdrop-blur-md rounded-full border border-slate-700/50 cursor-pointer hover:border-purple-500/50 hover:text-purple-400 transition-all hover:bg-slate-800 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:-translate-y-0.5 active:scale-95" 
                     onClick={() => { 
                         setQuery('Crypto Market Top Picks'); 
                         performAnalysis('Analyze Crypto Market. Identify 4-5 crypto assets with HIGH potential and good risk-reward. Return them in the trendingAssets list.', 'Crypto Market Top Picks', true); 
@@ -325,32 +325,32 @@ const App: React.FC = () => {
               <div className="flex flex-col items-center justify-center min-h-[50vh] animate-in fade-in zoom-in-95 duration-700">
                   <div className="relative mb-10">
                      <div className="absolute inset-0 bg-sky-500 blur-3xl opacity-20 animate-pulse"></div>
-                     <div className="relative z-10 bg-slate-900/80 backdrop-blur-xl rounded-full p-8 ring-1 ring-white/10 shadow-[0_0_50px_rgba(14,165,233,0.3)]">
-                         <Loader2 className="w-16 h-16 text-sky-400 animate-spin" />
+                     <div className="relative z-10 bg-slate-900/80 backdrop-blur-xl rounded-full p-6 md:p-8 ring-1 ring-white/10 shadow-[0_0_50px_rgba(14,165,233,0.3)]">
+                         <Loader2 className="w-12 h-12 md:w-16 md:h-16 text-sky-400 animate-spin" />
                      </div>
                      <div className="absolute -inset-6 border border-dashed border-sky-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
                      <div className="absolute -inset-12 border border-dotted border-sky-500/10 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
                   </div>
-                  <h2 className="text-4xl font-black text-white mb-4 uppercase tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-white via-sky-200 to-slate-400 drop-shadow-sm">
+                  <h2 className="text-2xl md:text-4xl font-black text-white mb-4 uppercase tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-white via-sky-200 to-slate-400 drop-shadow-sm text-center">
                     Initiating Scan
                   </h2>
-                  <div className="flex items-center gap-3 text-slate-300 font-mono text-sm bg-slate-900/60 backdrop-blur-md px-6 py-3 rounded-xl border border-white/10 shadow-lg">
-                      <ScanLine className="w-4 h-4 animate-pulse text-sky-400" />
-                      <span>Processing telemetry for <span className="text-white font-bold text-sky-300">"{analyzedQuery}"</span>...</span>
+                  <div className="flex items-center gap-3 text-slate-300 font-mono text-xs md:text-sm bg-slate-900/60 backdrop-blur-md px-4 py-2 md:px-6 md:py-3 rounded-xl border border-white/10 shadow-lg max-w-[90vw] overflow-hidden whitespace-nowrap text-ellipsis">
+                      <ScanLine className="w-3 h-3 md:w-4 md:h-4 animate-pulse text-sky-400 flex-shrink-0" />
+                      <span className="truncate">Processing telemetry for <span className="text-white font-bold text-sky-300">"{analyzedQuery}"</span>...</span>
                   </div>
               </div>
           )}
           
           {view === ViewState.ERROR && (
-            <div className="max-w-2xl mx-auto text-center py-20 glass-card rounded-2xl border-rose-500/30 animate-in fade-in zoom-in-95">
-              <div className="w-20 h-20 bg-rose-500/10 rounded-full flex items-center justify-center mx-auto mb-8 ring-1 ring-rose-500/40 shadow-[0_0_30px_rgba(244,63,94,0.3)]">
-                 <AlertTriangle className="w-10 h-10 text-rose-500" />
+            <div className="max-w-2xl mx-auto text-center py-12 md:py-20 glass-card rounded-2xl border-rose-500/30 animate-in fade-in zoom-in-95">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-rose-500/10 rounded-full flex items-center justify-center mx-auto mb-6 md:mb-8 ring-1 ring-rose-500/40 shadow-[0_0_30px_rgba(244,63,94,0.3)]">
+                 <AlertTriangle className="w-8 h-8 md:w-10 md:h-10 text-rose-500" />
               </div>
-              <h2 className="text-3xl font-black text-white mb-4">Analysis Halted</h2>
-              <p className="text-slate-400 mb-10 px-8 leading-relaxed text-lg">{error}</p>
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-4">Analysis Halted</h2>
+              <p className="text-slate-400 mb-8 md:mb-10 px-6 md:px-8 leading-relaxed text-base md:text-lg">{error}</p>
               <button 
                 onClick={handleRetry}
-                className="bg-white text-slate-950 hover:bg-sky-50 hover:text-sky-900 px-10 py-4 rounded-xl font-black uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-105 active:scale-95"
+                className="bg-white text-slate-950 hover:bg-sky-50 hover:text-sky-900 px-8 py-3 md:px-10 md:py-4 rounded-xl font-black uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-105 active:scale-95 text-sm md:text-base"
               >
                 Return to Dashboard
               </button>
@@ -372,7 +372,7 @@ const App: React.FC = () => {
                    <div className="flex items-center justify-between mb-8">
                      <button 
                       onClick={() => { setView(ViewState.DASHBOARD); handleNavClick('Markets'); }}
-                      className="text-sm font-bold text-slate-400 hover:text-white flex items-center gap-2 transition-colors px-4 py-2 hover:bg-white/5 rounded-lg"
+                      className="text-xs md:text-sm font-bold text-slate-400 hover:text-white flex items-center gap-2 transition-colors px-3 py-2 hover:bg-white/5 rounded-lg"
                      >
                        ← Dashboard
                      </button>
@@ -393,7 +393,7 @@ const App: React.FC = () => {
               <div className="flex items-center justify-between mb-8">
                  <button 
                   onClick={() => { setView(ViewState.DASHBOARD); handleNavClick('Markets'); }}
-                  className="text-sm font-bold text-slate-400 hover:text-white flex items-center gap-2 transition-colors px-4 py-2 hover:bg-white/5 rounded-lg"
+                  className="text-xs md:text-sm font-bold text-slate-400 hover:text-white flex items-center gap-2 transition-colors px-3 py-2 hover:bg-white/5 rounded-lg"
                  >
                    ← Dashboard
                  </button>
@@ -408,32 +408,32 @@ const App: React.FC = () => {
           )}
 
           {view === ViewState.DASHBOARD && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 animate-in fade-in slide-in-from-bottom-12 duration-1000">
-               <div className="glass-card p-10 rounded-3xl group border border-white/5 relative overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12 md:mt-16 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+               <div className="glass-card p-6 md:p-10 rounded-3xl group border border-white/5 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-sky-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="w-16 h-16 bg-sky-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sky-500/20 transition-all duration-300 border border-sky-500/20 group-hover:scale-110 shadow-[0_0_20px_rgba(14,165,233,0.1)]">
-                     <BarChart3 className="w-8 h-8 text-sky-400" />
+                  <div className="w-14 h-14 md:w-16 md:h-16 bg-sky-500/10 rounded-2xl flex items-center justify-center mb-6 md:mb-8 group-hover:bg-sky-500/20 transition-all duration-300 border border-sky-500/20 group-hover:scale-110 shadow-[0_0_20px_rgba(14,165,233,0.1)]">
+                     <BarChart3 className="w-7 h-7 md:w-8 md:h-8 text-sky-400" />
                   </div>
-                  <h3 className="font-extrabold text-2xl text-white mb-4 group-hover:text-sky-300 transition-colors">Fundamental Scan</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed group-hover:text-slate-300">Automated analysis of P/E, PEG, debt ratios, and cash flow health against sector peers.</p>
+                  <h3 className="font-extrabold text-xl md:text-2xl text-white mb-4 group-hover:text-sky-300 transition-colors">Fundamental Scan</h3>
+                  <p className="text-xs md:text-sm text-slate-400 leading-relaxed group-hover:text-slate-300">Automated analysis of P/E, PEG, debt ratios, and cash flow health against sector peers.</p>
                </div>
                
-               <div className="glass-card p-10 rounded-3xl group border border-white/5 relative overflow-hidden">
+               <div className="glass-card p-6 md:p-10 rounded-3xl group border border-white/5 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-emerald-500/20 transition-all duration-300 border border-emerald-500/20 group-hover:scale-110 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
-                     <DollarSign className="w-8 h-8 text-emerald-400" />
+                  <div className="w-14 h-14 md:w-16 md:h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 md:mb-8 group-hover:bg-emerald-500/20 transition-all duration-300 border border-emerald-500/20 group-hover:scale-110 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+                     <DollarSign className="w-7 h-7 md:w-8 md:h-8 text-emerald-400" />
                   </div>
-                  <h3 className="font-extrabold text-2xl text-white mb-4 group-hover:text-emerald-300 transition-colors">Fair Value Audit</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed group-hover:text-slate-300">AI-driven intrinsic valuation models to detect over-hyped assets and hidden gems.</p>
+                  <h3 className="font-extrabold text-xl md:text-2xl text-white mb-4 group-hover:text-emerald-300 transition-colors">Fair Value Audit</h3>
+                  <p className="text-xs md:text-sm text-slate-400 leading-relaxed group-hover:text-slate-300">AI-driven intrinsic valuation models to detect over-hyped assets and hidden gems.</p>
                </div>
                
-               <div className="glass-card p-10 rounded-3xl group border border-white/5 relative overflow-hidden">
+               <div className="glass-card p-6 md:p-10 rounded-3xl group border border-white/5 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="w-16 h-16 bg-rose-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-rose-500/20 transition-all duration-300 border border-rose-500/20 group-hover:scale-110 shadow-[0_0_20px_rgba(244,63,94,0.1)]">
-                     <PieChart className="w-8 h-8 text-rose-400" />
+                  <div className="w-14 h-14 md:w-16 md:h-16 bg-rose-500/10 rounded-2xl flex items-center justify-center mb-6 md:mb-8 group-hover:bg-rose-500/20 transition-all duration-300 border border-rose-500/20 group-hover:scale-110 shadow-[0_0_20px_rgba(244,63,94,0.1)]">
+                     <PieChart className="w-7 h-7 md:w-8 md:h-8 text-rose-400" />
                   </div>
-                  <h3 className="font-extrabold text-2xl text-white mb-4 group-hover:text-rose-300 transition-colors">Bubble Detection</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed group-hover:text-slate-300">Comparative historical analysis to identify unsustainable parabolic moves and crash risks.</p>
+                  <h3 className="font-extrabold text-xl md:text-2xl text-white mb-4 group-hover:text-rose-300 transition-colors">Bubble Detection</h3>
+                  <p className="text-xs md:text-sm text-slate-400 leading-relaxed group-hover:text-slate-300">Comparative historical analysis to identify unsustainable parabolic moves and crash risks.</p>
                </div>
             </div>
           )}

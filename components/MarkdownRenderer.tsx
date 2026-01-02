@@ -18,12 +18,12 @@ const TableRenderer: React.FC<{ rows: string[]; mode: 'dark' | 'light' }> = ({ r
   const cellText = mode === 'light' ? 'text-slate-700' : 'text-slate-300';
 
   return (
-    <div className={`overflow-x-auto my-8 border ${borderColor} rounded-lg shadow-sm`}>
-      <table className={`w-full text-sm text-left border-collapse ${cellText}`}>
-        <thead className={`text-xs uppercase ${headerBg}`}>
+    <div className={`overflow-x-auto my-6 md:my-8 border ${borderColor} rounded-lg shadow-sm`}>
+      <table className={`w-full text-xs md:text-sm text-left border-collapse ${cellText}`}>
+        <thead className={`text-[10px] md:text-xs uppercase ${headerBg}`}>
           <tr>
             {headers.map((h, i) => (
-              <th key={i} className={`px-6 py-4 font-bold tracking-wider border ${borderColor}`}>
+              <th key={i} className={`px-4 py-3 md:px-6 md:py-4 font-bold tracking-wider border ${borderColor}`}>
                 <InlineText text={h} mode={mode} />
               </th>
             ))}
@@ -33,7 +33,7 @@ const TableRenderer: React.FC<{ rows: string[]; mode: 'dark' | 'light' }> = ({ r
           {dataRows.map((row, i) => (
             <tr key={i} className={`${rowHover} transition-colors`}>
               {row.map((cell, j) => (
-                <td key={j} className={`px-6 py-4 whitespace-pre-wrap leading-relaxed border ${borderColor}`}>
+                <td key={j} className={`px-4 py-3 md:px-6 md:py-4 whitespace-pre-wrap leading-relaxed border ${borderColor}`}>
                    <InlineText text={cell} mode={mode} />
                 </td>
               ))}
@@ -85,32 +85,32 @@ const VerdictBadge: React.FC<{ verdict: string }> = ({ verdict }) => {
   if (!v) return null;
 
   let styles = 'bg-slate-700 text-white';
-  let icon = <CheckCircle2 className="w-6 h-6" />;
+  let icon = <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6" />;
 
   const normalized = v.toLowerCase();
   if (normalized.includes('strong buy')) {
     styles = 'bg-emerald-600 text-white shadow-lg border border-emerald-500';
-    icon = <Rocket className="w-6 h-6" />;
+    icon = <Rocket className="w-5 h-5 md:w-6 md:h-6" />;
   } else if (normalized.includes('buy')) {
     styles = 'bg-emerald-500 text-white border border-emerald-400';
-    icon = <TrendingUp className="w-6 h-6" />;
+    icon = <TrendingUp className="w-5 h-5 md:w-6 md:h-6" />;
   } else if (normalized.includes('hold') || normalized.includes('observing')) {
     styles = 'bg-sky-500 text-white border border-sky-400';
-    icon = <CheckCircle2 className="w-6 h-6" />;
+    icon = <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6" />;
   } else if (normalized.includes('caution')) {
     styles = 'bg-amber-500 text-white border border-amber-400';
-    icon = <AlertTriangle className="w-6 h-6" />;
+    icon = <AlertTriangle className="w-5 h-5 md:w-6 md:h-6" />;
   } else if (normalized.includes('strong sell')) {
     styles = 'bg-rose-600 text-white shadow-lg border border-rose-500';
-    icon = <AlertOctagon className="w-6 h-6" />;
+    icon = <AlertOctagon className="w-5 h-5 md:w-6 md:h-6" />;
   } else if (normalized.includes('sell')) {
     styles = 'bg-rose-500 text-white border border-rose-400';
-    icon = <TrendingDown className="w-6 h-6" />;
+    icon = <TrendingDown className="w-5 h-5 md:w-6 md:h-6" />;
   }
 
   return (
-    <div className="my-8 flex justify-center print:my-4">
-      <div className={`inline-flex items-center gap-4 px-8 py-4 rounded-xl font-black text-xl uppercase tracking-tighter shadow-md ${styles}`}>
+    <div className="my-6 md:my-8 flex justify-center print:my-4">
+      <div className={`inline-flex items-center gap-3 md:gap-4 px-6 py-3 md:px-8 md:py-4 rounded-xl font-black text-lg md:text-xl uppercase tracking-tighter shadow-md ${styles}`}>
         {icon}
         {v}
       </div>
@@ -185,15 +185,15 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, mode = 'da
 
         if (el.type === 'header') {
             const content = el.content as string;
-            if (el.level === 1) return <h1 key={index} className={`text-2xl font-black mb-4 mt-8 uppercase tracking-tight ${headerColor}`}><InlineText text={content} mode={mode} /></h1>;
-            if (el.level === 2) return <h2 key={index} className={`text-xl font-bold mt-8 mb-4 border-b pb-2 ${mode === 'light' ? 'border-slate-200' : 'border-slate-700'} ${headerColor}`}><InlineText text={content} mode={mode} /></h2>;
-            return <h3 key={index} className={`text-lg font-bold mt-6 mb-2 ${subHeaderColor}`}><InlineText text={content} mode={mode} /></h3>;
+            if (el.level === 1) return <h1 key={index} className={`text-xl md:text-2xl font-black mb-3 md:mb-4 mt-6 md:mt-8 uppercase tracking-tight ${headerColor}`}><InlineText text={content} mode={mode} /></h1>;
+            if (el.level === 2) return <h2 key={index} className={`text-lg md:text-xl font-bold mt-6 md:mt-8 mb-3 md:mb-4 border-b pb-2 ${mode === 'light' ? 'border-slate-200' : 'border-slate-700'} ${headerColor}`}><InlineText text={content} mode={mode} /></h2>;
+            return <h3 key={index} className={`text-base md:text-lg font-bold mt-4 md:mt-6 mb-2 ${subHeaderColor}`}><InlineText text={content} mode={mode} /></h3>;
         }
 
         if (el.type === 'list') {
             return (
-                <div key={index} className="flex items-start ml-4 my-1">
-                  <span className={`${listBulletColor} mr-3 font-bold`}>•</span>
+                <div key={index} className="flex items-start ml-2 md:ml-4 my-1">
+                  <span className={`${listBulletColor} mr-2 md:mr-3 font-bold`}>•</span>
                   <span><InlineText text={el.content as string} mode={mode} /></span>
                 </div>
             );
@@ -201,15 +201,15 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, mode = 'da
 
         if (el.type === 'numlist') {
             return (
-                <div key={index} className="flex items-start ml-4 my-1">
-                  <span className={`${subHeaderColor} mr-3 font-bold`}>{index + 1}.</span>
+                <div key={index} className="flex items-start ml-2 md:ml-4 my-1">
+                  <span className={`${subHeaderColor} mr-2 md:mr-3 font-bold`}>{index + 1}.</span>
                   <span><InlineText text={el.content as string} mode={mode} /></span>
                 </div>
             );
         }
 
         if (el.content === '') return <div key={index} className="h-2"></div>;
-        return <div key={index} className="mb-2"><InlineText text={el.content as string} mode={mode} /></div>;
+        return <div key={index} className="mb-2 text-sm md:text-base"><InlineText text={el.content as string} mode={mode} /></div>;
       })}
     </div>
   );

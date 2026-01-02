@@ -126,16 +126,16 @@ const PortfolioView: React.FC<PortfolioViewProps> = ({ items, onUpdate, onAnalyz
     <div className="pb-20 animate-fade-in relative">
        {/* Header */}
        <div className="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-white/5 pb-6">
-          <div>
-            <h2 className="text-3xl font-black text-white mb-2 uppercase tracking-tight">Portfolio Command</h2>
-            <p className="text-slate-400 text-sm font-medium">Track holdings, simulate shifts, and audit risk.</p>
+          <div className="text-center md:text-left">
+            <h2 className="text-2xl md:text-3xl font-black text-white mb-2 uppercase tracking-tight">Portfolio Command</h2>
+            <p className="text-slate-400 text-xs md:text-sm font-medium">Track holdings, simulate shifts, and audit risk.</p>
           </div>
           <div className="flex gap-3 mt-4 md:mt-0">
-             <button onClick={refreshPrices} className="flex items-center gap-2 px-5 py-2.5 bg-slate-800 text-slate-300 rounded-xl hover:bg-slate-700 transition-colors border border-slate-600 text-xs font-bold uppercase tracking-wider">
-                <RefreshCcw className="w-4 h-4" /> Simulate Market Data
+             <button onClick={refreshPrices} className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-slate-800 text-slate-300 rounded-xl hover:bg-slate-700 transition-colors border border-slate-600 text-[10px] md:text-xs font-bold uppercase tracking-wider">
+                <RefreshCcw className="w-3 h-3 md:w-4 md:h-4" /> Simulate Market Data
              </button>
-             <button onClick={onAnalyze} className="flex items-center gap-2 px-5 py-2.5 bg-sky-600 text-white rounded-xl hover:bg-sky-500 transition-colors font-bold shadow-lg shadow-sky-900/30 text-xs uppercase tracking-wider">
-                <BrainCircuit className="w-4 h-4" /> AI Risk Audit
+             <button onClick={onAnalyze} className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-sky-600 text-white rounded-xl hover:bg-sky-500 transition-colors font-bold shadow-lg shadow-sky-900/30 text-[10px] md:text-xs uppercase tracking-wider">
+                <BrainCircuit className="w-3 h-3 md:w-4 md:h-4" /> AI Risk Audit
              </button>
           </div>
        </div>
@@ -146,7 +146,7 @@ const PortfolioView: React.FC<PortfolioViewProps> = ({ items, onUpdate, onAnalyz
              <div className="text-slate-400 text-[10px] font-extrabold uppercase tracking-widest mb-2 flex items-center gap-2">
                 <Wallet className="w-4 h-4 text-sky-400" /> Net Worth
              </div>
-             <div className="text-3xl font-black text-white font-mono tracking-tight">
+             <div className="text-2xl md:text-3xl font-black text-white font-mono tracking-tight">
                 ₹{totalValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
              </div>
           </div>
@@ -154,7 +154,7 @@ const PortfolioView: React.FC<PortfolioViewProps> = ({ items, onUpdate, onAnalyz
              <div className="text-slate-400 text-[10px] font-extrabold uppercase tracking-widest mb-2 flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-emerald-400" /> Total P/L (₹)
              </div>
-             <div className={`text-3xl font-black font-mono tracking-tight ${totalPL >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+             <div className={`text-2xl md:text-3xl font-black font-mono tracking-tight ${totalPL >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                 {totalPL >= 0 ? '+' : ''}{totalPL.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
              </div>
           </div>
@@ -162,7 +162,7 @@ const PortfolioView: React.FC<PortfolioViewProps> = ({ items, onUpdate, onAnalyz
              <div className="text-slate-400 text-[10px] font-extrabold uppercase tracking-widest mb-2 flex items-center gap-2">
                 <PieChart className="w-4 h-4 text-purple-400" /> Total P/L (%)
              </div>
-             <div className={`text-3xl font-black font-mono tracking-tight ${totalPLPercent >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+             <div className={`text-2xl md:text-3xl font-black font-mono tracking-tight ${totalPLPercent >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                 {totalPLPercent >= 0 ? '+' : ''}{totalPLPercent.toFixed(2)}%
              </div>
           </div>
@@ -172,7 +172,7 @@ const PortfolioView: React.FC<PortfolioViewProps> = ({ items, onUpdate, onAnalyz
           {/* Holdings List */}
           <div className="lg:col-span-2 space-y-4">
              <div className="flex justify-between items-center mb-2">
-                <h3 className="text-xl font-bold text-white uppercase tracking-tight">Holdings</h3>
+                <h3 className="text-lg md:text-xl font-bold text-white uppercase tracking-tight">Holdings</h3>
                 <button onClick={() => setIsAdding(!isAdding)} className="flex items-center gap-1 text-xs font-bold text-sky-400 hover:text-sky-300 uppercase tracking-wider bg-sky-950/30 px-3 py-1.5 rounded-lg border border-sky-500/20">
                    <Plus className="w-4 h-4" /> Add Asset
                 </button>
@@ -227,17 +227,17 @@ const PortfolioView: React.FC<PortfolioViewProps> = ({ items, onUpdate, onAnalyz
                 </div>
              )}
 
-             <div className="glass-card rounded-2xl overflow-hidden min-h-[300px]">
-                <table className="w-full text-left text-sm">
+             <div className="glass-card rounded-2xl overflow-hidden min-h-[300px] overflow-x-auto">
+                <table className="w-full text-left text-sm min-w-[600px]">
                    <thead className="bg-slate-900/60 text-slate-400 uppercase text-[10px] font-bold tracking-wider">
                       <tr>
-                         <th className="px-6 py-4">Asset</th>
-                         <th className="px-6 py-4 text-right">Qty</th>
-                         <th className="px-6 py-4 text-right">Avg Cost</th>
-                         <th className="px-6 py-4 text-right">Price (Sim)</th>
-                         <th className="px-6 py-4 text-right">Value</th>
-                         <th className="px-6 py-4 text-right">P/L</th>
-                         <th className="px-6 py-4 text-right">Action</th>
+                         <th className="px-4 py-3 md:px-6 md:py-4">Asset</th>
+                         <th className="px-4 py-3 md:px-6 md:py-4 text-right">Qty</th>
+                         <th className="px-4 py-3 md:px-6 md:py-4 text-right">Avg Cost</th>
+                         <th className="px-4 py-3 md:px-6 md:py-4 text-right">Price (Sim)</th>
+                         <th className="px-4 py-3 md:px-6 md:py-4 text-right">Value</th>
+                         <th className="px-4 py-3 md:px-6 md:py-4 text-right">P/L</th>
+                         <th className="px-4 py-3 md:px-6 md:py-4 text-right">Action</th>
                       </tr>
                    </thead>
                    <tbody className="divide-y divide-white/5">
@@ -247,15 +247,15 @@ const PortfolioView: React.FC<PortfolioViewProps> = ({ items, onUpdate, onAnalyz
                          const plPer = (pl / (item.quantity * item.buyPrice)) * 100;
                          return (
                             <tr key={item.id} className="hover:bg-white/5 transition-colors group">
-                               <td className="px-6 py-4">
+                               <td className="px-4 py-3 md:px-6 md:py-4">
                                   <div className="font-bold text-white font-mono">{item.symbol}</div>
                                   <div className="text-xs text-slate-500 truncate max-w-[150px] font-medium">{item.name}</div>
                                </td>
-                               <td className="px-6 py-4 text-right text-slate-300 font-mono">{item.quantity.toLocaleString()}</td>
-                               <td className="px-6 py-4 text-right text-slate-300 font-mono">₹{item.buyPrice.toFixed(2)}</td>
-                               <td className="px-6 py-4 text-right text-sky-300 font-mono font-bold">₹{item.currentPrice.toFixed(2)}</td>
-                               <td className="px-6 py-4 text-right font-bold text-white font-mono">₹{val.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                               <td className="px-6 py-4 text-right">
+                               <td className="px-4 py-3 md:px-6 md:py-4 text-right text-slate-300 font-mono">{item.quantity.toLocaleString()}</td>
+                               <td className="px-4 py-3 md:px-6 md:py-4 text-right text-slate-300 font-mono">₹{item.buyPrice.toFixed(2)}</td>
+                               <td className="px-4 py-3 md:px-6 md:py-4 text-right text-sky-300 font-mono font-bold">₹{item.currentPrice.toFixed(2)}</td>
+                               <td className="px-4 py-3 md:px-6 md:py-4 text-right font-bold text-white font-mono">₹{val.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                               <td className="px-4 py-3 md:px-6 md:py-4 text-right">
                                   <div className={`font-bold font-mono ${pl >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                                      {pl >= 0 ? '+' : ''}{pl.toFixed(2)}
                                   </div>
@@ -263,8 +263,8 @@ const PortfolioView: React.FC<PortfolioViewProps> = ({ items, onUpdate, onAnalyz
                                      {plPer.toFixed(2)}%
                                   </div>
                                </td>
-                               <td className="px-6 py-4 text-right">
-                                  <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                               <td className="px-4 py-3 md:px-6 md:py-4 text-right">
+                                  <div className="flex items-center justify-end gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                                       <button 
                                         onClick={() => initiateTransaction('buy', item)} 
                                         className="p-1.5 rounded-md text-emerald-400 hover:bg-emerald-500/10 hover:text-emerald-300 transition-colors"
