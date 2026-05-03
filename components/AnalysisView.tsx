@@ -154,9 +154,9 @@ const AnalysisView: React.FC<AnalysisViewProps> = ({ data, title, isListView = f
     <div className="pb-20 w-full max-w-[1600px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000" id="analysis-report">
       <div className="flex flex-col items-center justify-center mb-8 md:mb-12 border-b border-white/10 pb-8 md:pb-12 gap-6 md:gap-10 pt-4 md:pt-8 break-inside-avoid relative">
         <div className="absolute inset-0 bg-sky-500/5 blur-[100px] rounded-full z-[-1] animate-pulse-glow"></div>
-        <div className="text-center px-4">
-          <h1 className="text-3xl md:text-5xl lg:text-7xl font-black text-white uppercase tracking-tighter drop-shadow-2xl mb-4 leading-tight">{title}</h1>
-          <div className="inline-flex items-center gap-2 px-3 py-1 md:px-4 rounded-full border border-sky-500/30 bg-sky-950/30 text-sky-400 font-mono text-[10px] md:text-sm uppercase tracking-widest shadow-[0_0_20px_rgba(14,165,233,0.2)]">
+        <div className="text-center px-8 md:px-16 py-10 md:py-20 relative z-10 max-w-5xl mx-auto bg-slate-900/40 backdrop-blur-3xl rounded-[3rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+          <h1 className="text-xl md:text-[39px] font-black text-white uppercase tracking-tighter drop-shadow-2xl mb-6 leading-tight md:leading-[47px] break-words">{title}</h1>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-sky-500/30 bg-sky-950/50 text-sky-400 font-mono text-[10px] md:text-sm uppercase tracking-widest shadow-[0_0_30px_rgba(14,165,233,0.15)] backdrop-blur-md">
               <ScanLine className="w-3 h-3 md:w-4 md:h-4 animate-pulse" /> {isListView ? 'Market Sector Scan' : 'Real-time Analysis Report'}
           </div>
         </div>
@@ -204,8 +204,8 @@ const AnalysisView: React.FC<AnalysisViewProps> = ({ data, title, isListView = f
                 
                 <div className="break-inside-avoid glass-card rounded-3xl p-6 md:p-8 flex flex-col justify-center items-center text-center group min-h-[160px]">
                 <span className="text-slate-400 text-[10px] md:text-xs font-black uppercase mb-3 md:mb-4 tracking-[0.2em] group-hover:text-white transition-colors">Market Sentiment</span>
-                <div className={`text-4xl md:text-5xl font-black uppercase ${getSentimentColor(structuredData.marketSentiment)} drop-shadow-lg scale-110`}>
-                    <span className="mr-3 inline-block animate-float">{getSentimentEmoji(structuredData.marketSentiment)}</span>
+                <div className={`text-2xl md:text-3xl font-black uppercase ${getSentimentColor(structuredData.marketSentiment)} drop-shadow-lg`}>
+                    <span className="mr-2 inline-block animate-float">{getSentimentEmoji(structuredData.marketSentiment)}</span>
                     {structuredData.marketSentiment}
                 </div>
                 </div>

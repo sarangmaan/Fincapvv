@@ -220,7 +220,9 @@ const runForensicAnalysis = async (systemType: string, promptContext: string, qu
 };
 
 export const analyzeMarket = async (query: string, onUpdate?: (data: AnalysisResult) => void): Promise<AnalysisResult> => {
-    const prompt = `Perform a forensic deep-dive analysis for: "${query}". ESTIMATE current market status/price. If asking for a list, populate 'trendingAssets' or 'topBubbleAssets'.`;
+    const prompt = `Perform a forensic deep-dive analysis for: "${query}". 
+    ESTIMATE current market status/price. 
+    ALWAYS populate 'trendingAssets' or 'topBubbleAssets' with 3-4 related or sector-peer assets to complete the 'Market Scan' view, even if analyzing a single symbol.`;
     const result = await runForensicAnalysis('market', prompt, query);
     if (onUpdate) onUpdate(result);
     return result;
