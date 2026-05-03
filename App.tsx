@@ -36,12 +36,34 @@ const App: React.FC = () => {
             if (loading) {
                 console.warn("Analysis timed out via watchdog.");
                 setLoading(false);
-                setError("The analysis took too long. Please check your connection or API key and try again.");
+                setError("The analysis service is taking unusually long. This might be due to API rate limits or network congestion. Please try a simpler search or try again in 30 seconds.");
                 setView(ViewState.ERROR);
             }
-        }, 300000); 
+        }, 60000); // Reduced to 1 minute for better UX
     }
     return () => clearTimeout(safetyTimer);
+  }, [loading]);
+
+  const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
+  const loadingMessages = [
+    "Initiating Forensic Scan...",
+    "Bypassing Institutional Firewalls...",
+    "Scrubbing Dark Pool Data...",
+    "Auditing Shadow Balance Sheets...",
+    "detecting irrational exuberance...",
+    "Correlating Macro Divergence...",
+    "Syncing with Global Indices...",
+    "Finalizing Forensic Verdict..."
+  ];
+
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>;
+    if (loading) {
+        interval = setInterval(() => {
+            setLoadingMessageIndex((prev) => (prev + 1) % loadingMessages.length);
+        }, 3000);
+    }
+    return () => clearInterval(interval);
   }, [loading]);
 
   const handleUpdatePortfolio = (items: PortfolioItem[]) => {
@@ -332,11 +354,13 @@ const App: React.FC = () => {
                      <div className="absolute -inset-12 border border-dotted border-sky-500/10 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
                   </div>
                   <h2 className="text-2xl md:text-4xl font-black text-white mb-4 uppercase tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-white via-sky-200 to-slate-400 drop-shadow-sm text-center">
-                    Initiating Scan
+                    {loadingMessages[loadingMessageIndex]}
                   </h2>
                   <div className="flex items-center gap-3 text-slate-300 font-mono text-xs md:text-sm bg-slate-900/60 backdrop-blur-md px-4 py-2 md:px-6 md:py-3 rounded-xl border border-white/10 shadow-lg max-w-[90vw] overflow-hidden whitespace-nowrap text-ellipsis">
                       <ScanLine className="w-3 h-3 md:w-4 md:h-4 animate-pulse text-sky-400 flex-shrink-0" />
-                      <span className="truncate">Processing telemetry for <span className="text-white font-bold text-sky-300">"{analyzedQuery}"</span>...</span>
+                      <span className="truncate tracking-wider animate-pulse transition-all duration-1000">
+                        RUNNING AUDIT ON <span className="text-white font-bold text-sky-300">"{analyzedQuery}"</span>
+                      </span>
                   </div>
               </div>
           )}

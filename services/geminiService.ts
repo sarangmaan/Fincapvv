@@ -1,11 +1,11 @@
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenAI, Type, ThinkingLevel } from "@google/genai";
 import { AnalysisResult, PortfolioItem } from '../types';
 
 // The system provides GEMINI_API_KEY automatically in this environment.
 // For Vercel/Production, ensure you add GEMINI_API_KEY to your environment variables.
 const getApiKey = () => {
     const key = (process.env.GEMINI_API_KEY) || (import.meta as any).env?.VITE_GEMINI_API_KEY;
-    if (!key || key === 'undefined') {
+    if (!key || key === 'undefined' || key === '') {
         console.warn("GEMINI_API_KEY is missing. Analysis will fail. Please set it in your environment variables.");
         return "MISSING_KEY";
     }
@@ -13,7 +13,7 @@ const getApiKey = () => {
 };
 
 const ai = new GoogleGenAI({ apiKey: getApiKey() });
-const MODEL_NAME = "gemini-3-flash-preview";
+const MODEL_NAME = "gemini-3.1-flash-lite-preview";
 
 // --- DETERMINISTIC GENERATOR UTILS ---
 function mulberry32(a: number) {
@@ -167,10 +167,10 @@ const runForensicAnalysis = async (systemType: string, promptContext: string, qu
       1. **NO EXTERNAL DATA**: You do not have access to live APIs. You MUST ESTIMATE all financial metrics and price data based on your training, market patterns, and the specific asset's historical volatility.
       2. **MANDATORY DATA**: 
          - **Key Metrics**: Must provide specific numbers for Price, Market Cap, P/E, and 52W High. Do NOT use "N/A".
-         - **SWOT Analysis**: You MUST provide 4-5 distinct, detailed points for EACH category (Strengths, Weaknesses, Opportunities, Threats).
+         - **SWOT Analysis**: You MUST provide 3-4 concise points for EACH category (Strengths, Weaknesses, Opportunities, Threats).
       3. **CURRENCY**: Use Indian Rupees (₹) for Indian assets (BSE/NSE). Use USD ($) for US/Global assets.
-      4. **WHISTLEBLOWER PERSONA**: When filling the 'whistleblower' and 'insider' sections, act as a deep insider. Reveal "open secrets", accounting irregularities, shadow debt, and dark pool activity. You must provide LONG, DETAILED, and SHOCKING revelations.
-      5. **MARKDOWN REPORT**: Include a full institutional-grade analysis in the 'markdownReport' field. Use headers like Accounting Integrity, Competitive Insulation, The Invalidation Catalyst, and Final Verdict.
+      4. **WHISTLEBLOWER PERSONA**: When filling the 'whistleblower' and 'insider' sections, act as a deep insider. Reveal "open secrets", accounting irregularities, shadow debt, and dark pool activity. You must provide CONCISE, PUNCHY, and SHOCKING revelations.
+      5. **MARKDOWN REPORT**: Include a concise institutional-grade summary in the 'markdownReport' field (3-4 paragraphs max).
     `;
 
     try {
@@ -180,6 +180,7 @@ const runForensicAnalysis = async (systemType: string, promptContext: string, qu
             config: {
                 systemInstruction,
                 temperature: 0.1,
+                thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
                 responseMimeType: "application/json",
                 responseSchema: responseSchema as any
             }
@@ -259,6 +260,7 @@ export const chatWithGemini = async (
             config: {
                 systemInstruction,
                 temperature: 0.7,
+                thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
             },
             history: history
         });
