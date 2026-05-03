@@ -1,1 +1,0 @@
-export const API_KEY = "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";

@@ -7,7 +7,7 @@ import SearchBar from './components/SearchBar';
 import Logo from './components/Logo';
 import BackgroundGraph from './components/BackgroundGraph';
 import { BarChart3, AlertTriangle, DollarSign, PieChart, Activity, Loader2, ScanLine } from 'lucide-react';
-import { analyzeMarket, analyzePortfolio, analyzeBubbles } from './services/groqService';
+import { analyzeMarket, analyzePortfolio, analyzeBubbles } from './services/geminiService';
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewState>(ViewState.DASHBOARD);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Send, X, Skull } from 'lucide-react';
-import { chatWithGroq } from '../services/groqService';
+import { chatWithGemini } from '../services/geminiService';
 
 interface RealityChatProps {
   isOpen: boolean;
@@ -69,7 +69,7 @@ const RealityChat: React.FC<RealityChatProps> = ({ isOpen, onClose, context }) =
       }));
 
       // Use Robust Service
-      const replyText = await chatWithGroq(history, currentInput, context);
+      const replyText = await chatWithGemini(history, currentInput, context);
 
       setMessages(prev => [...prev, { 
         id: (Date.now() + 1).toString(), 
